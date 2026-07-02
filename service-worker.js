@@ -1,4 +1,4 @@
-const CACHE_NAME = 'fotoprogulka-02.07.2026-v1.9.8'; // Увеличили версию!
+const CACHE_NAME = 'fotoprogulka-02.07.2026-v2.0.0'; // Увеличили версию!
 const ASSETS = [
   './',
   './index.html',

@@ -47,6 +47,15 @@
         
         .footer { margin-top: 30px; text-align: center; font-size: 12px; color: var(--text-dim); }
         .footer a { color: var(--accent); text-decoration: none; margin: 0 8px; }
+
+        /* Стили для раскрывающейся инструкции-руководства */
+        .instruction-details { border: 1px solid var(--border); border-radius: 12px; background: var(--panel); margin-top: -15px; margin-bottom: 25px; padding: 14px; transition: all 0.3s; }
+        .instruction-summary { font-size: 13px; font-weight: 600; color: var(--text); cursor: pointer; list-style: none; display: flex; justify-content: space-between; align-items: center; user-select: none; }
+        .instruction-summary::after { content: '▾'; color: var(--text-dim); transition: transform 0.2s; font-size: 16px; }
+        .instruction-details[open] .instruction-summary::after { transform: rotate(180deg); }
+        .instruction-full-text { font-size: 13px; color: var(--text-dim); line-height: 1.6; margin-top: 12px; border-top: 1px solid var(--border); padding-top: 12px; }
+        .instruction-full-text ul { margin: 8px 0; padding-left: 20px; }
+        .instruction-full-text li { margin-bottom: 6px; }
         [hidden] { display: none !important; }
     </style>
 </head>
@@ -60,6 +69,21 @@
         - Сними самый лучший кадр, который можно сделать в том месте где ты находишься.<br><br>
         Хорошей фототренировки!
     </div>
+
+    <details class="instruction-details">
+        <summary class="instruction-summary">О чём это</summary>
+        <div class="instruction-full-text">
+            <strong>Заголовок секции 1:</strong>
+            <ul>
+                <li><strong>Пункт 1:</strong> Описание первого важного момента.</li>
+                <li><strong>Пункт 2:</strong> Описание второго момента.</li>
+                <li><strong>Пункт 3:</strong> Описание третьего момента.</li>
+            </ul>
+            <br>
+            <strong>Заголовок секции 2:</strong>
+            <p>Здесь вы можете написать любой связный текст, абзацы, советы по фотосъемке или правила игры.</p>
+        </div>
+    </details>
     
     <div class="modes-container" id="modesBlock">
         <div class="mode-btn active" id="modeWalk" onclick="setPreset(3, 7, 'modeWalk')">Спокойная прогулка<span>Интервал 3-7 мин</span></div>

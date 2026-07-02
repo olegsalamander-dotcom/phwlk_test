@@ -47,13 +47,11 @@
         
         .footer { margin-top: 30px; text-align: center; font-size: 12px; color: var(--text-dim); }
         .footer a { color: var(--accent); text-decoration: none; margin: 0 8px; }
-		.links { margin-top: 6px; text-align: left; font-size: 12px; color: var(--text-dim); }
-        .links a { color: var(--accent); text-decoration: none; margin: 0 0px; }
-		a[href^="#"]:not([href="#"]) {
-    color: var(--accent); /* Цвет вашего хэштега (например, фиолетовый) */
-    text-decoration: none; /* Убирает подчеркивание */
-    font-weight: 600; /* Делает шрифт чуть плотнее */
-}
+        .links { margin-top: 6px; text-align: left; font-size: 12px; color: var(--text-dim); line-height: 1.6; }
+        .links a { color: var(--accent); text-decoration: none; }
+        
+        /* Выделение хэштегов */
+        a[href^="#"]:not([href="#"]) { color: var(--accent); text-decoration: none; font-weight: 600; }
 
         /* Стили для раскрывающейся инструкции-руководства */
         .instruction-details { border: 1px solid var(--border); border-radius: 12px; background: var(--panel); margin-top: -15px; margin-bottom: 25px; padding: 14px; transition: all 0.3s; }
@@ -62,7 +60,7 @@
         .instruction-details[open] .instruction-summary::after { transform: rotate(180deg); }
         .instruction-full-text { font-size: 13px; color: var(--text-dim); line-height: 1.6; margin-top: 12px; border-top: 1px solid var(--border); padding-top: 12px; }
         .instruction-full-text ul { margin: 8px 0; padding-left: 20px; }
-        .instruction-full-text li { margin-bottom: 6px; }
+        .instruction-full-text li { margin-bottom: 8px; }
         [hidden] { display: none !important; }
     </style>
 </head>
@@ -100,7 +98,8 @@
         </div>
         <div class="slider-wrap">
             <div class="track"></div>
-            <div class="track-fill" id="trackFill"></div> <div class="ticks"><span>1</span><span>5</span><span>10</span><span>15</span></div>
+            <div class="track-fill" id="trackFill"></div> 
+            <div class="ticks"><span>1</span><span>5</span><span>10</span><span>15</span></div>
             <input id="minR" type="range" min="1" max="15" value="3">
             <input id="maxR" type="range" min="1" max="15" value="7">
         </div>
@@ -113,31 +112,30 @@
         <div class="instruction-full-text">
             <strong>О чём это</strong>
             <p>
-Приложение создано для тренировки твоих фотонавыков. Ты выходишь в город, надеваешь наушники, включаешь любимую музыку / книгу / подкаст и идёшь гулять. Время от времени ты получаешь звуковой сигнал, который означает - пора делать кадр! У тебя есть ровно одна минута, чтобы найти и сделать красивый кадр в том месте где ты на данный момент находишься.</br></br>
-Ты заранее не знаешь когда именно будет сигнал. Он прозвучит в любое время. Но ты можешь выбрать удобный для тебя диапазон. На выбор есть три режима прогулки:
-			<ul>
-                <li><strong>Спокойная прогулка.</strong></br>Интервал 3-7 минут. Подойдёт для большинства пеших прогулок.</li>
-                <li><strong>Размеренная прогулка.</strong></br>Интервал 7-15 минут. Подойдёт для велопрогулок по городу, чтобы часто не останавливаться</li>
-                <li><strong>Экстрим тренировка.</strong></br>Интервал 1-3 минуты. Подойдёт если вы в очень насыщенном месте и готовы делать кадры достаточно часто</li>
-          	 </ul>
-Выбирай удобный для себя режим. Нажимай "СТАРТ" и начинай прогулку. Полученными кадрами делись в соцсетях с хэштегом <a href="#фотоохотазаминуту">#фотоохотазаминуту</a>. Чтобы приложение не засыпало его нужно "установить" из браузера. Три точки - установить на главный экран (или что-то подобное). По возможностине держите открытыми много приложений.
-</br></br>
-<strong>Об авторе</strong></br>
-Меня зовут Олег Романов. Я фотограф из Ижевска. Однаджы решил устроить себе такой фоточелледж. И подумал, что было бы удобно иметь рандомный таймер, который нельзя предугадать. И вот мы здесь.</br></br>
-Вы можете подписаться на меня в моих соцсетях:
-        <div class="links">
-<a href="https://t.me/olegolezhek/">t.me/olegolezhek</a><br>
-<a href="https://vk.com/ioromanov/">vk.com/ioromanov</a><br>
-        </div>
-</p>
+                Приложение создано для тренировки твоих фотонавыков. Ты выходишь в город, надеваешь наушники, включаешь любимую музыку / книгу / подкаст и идёшь гулять. Время от времени ты получаешь звуковой сигнал, который означает - пора делать кадр! У тебя есть ровно одна минута, чтобы найти и сделать красивый кадр в том месте где ты на данный момент находишься.<br><br>
+                Ты заранее не знаешь когда именно будет сигнал. Он прозвучит в любое время. Но ты можешь выбрать удобный для тебя диапазон. На выбор есть три режима прогулки:
+            </p>
+            <ul>
+                <li><strong>Спокойная прогулка.</strong><br>Интервал 3-7 минут. Подойдёт для большинства пеших прогулок.</li>
+                <li><strong>Размеренная прогулка.</strong><br>Интервал 7-15 минут. Подойдёт для велопрогулок по городу, чтобы часто не останавливаться.</li>
+                <li><strong>Экстрим тренировка.</strong><br>Интервал 1-3 минуты. Подойдёт если вы в очень насыщенном месте и готовы делать кадры достаточно часто.</li>
+            </ul>
+            <p>
+                Выбирай удобный для себя режим. Нажимай "СТАРТ" и начинай прогулку. Полученными кадрами делись в соцсетях с хэштегом <a href="#фотоохотазаминуту">#фотоохотазаминуту</a>. Чтобы приложение не засыпало, его нужно "установить" из браузера: Три точки -> установить на главный экран (или что-то подобное). По возможности не держите открытыми много приложений.<br><br>
+                <strong>Об авторе</strong><br>
+                Меня зовут Олег Романов. Я фотограф из Ижевска. Однажды решил устроить себе такой фоточеллендж. И подумал, что было бы удобно иметь рандомный таймер, который нельзя предугадать. И вот мы здесь.<br><br>
+                Вы можете подписаться на меня в моих соцсетях:
+            </p>
+            <div class="links">
+                <a href="https://t.me/olegolezhek/" target="_blank" rel="noopener">t.me/olegolezhek</a><br>
+                <a href="https://vk.com/ioromanov/" target="_blank" rel="noopener">vk.com/ioromanov</a>
+            </div>
         </div>
     </details>	
 
     <div class="footer">
         <div>Автор проекта: Олег Романов</div>
-        <div style="margin-top: 8px;">
-         v 1.2
-        </div>
+        <div style="margin-top: 8px;">v 1.3</div>
     </div>
 </div>
 
@@ -176,8 +174,6 @@
                 let endTime = e.data.endTime;
                 
                 // Высокая частота проверки (200мс) гарантирует точность. 
-                // Даже если телефон "усыпит" поток на пару минут, при малейшем микро-просыпании 
-                // код мгновенно вычислит правильное время по Date.now() и пришлет сигнал.
                 timer = setInterval(() => {
                     let now = Date.now();
                     let timeLeft = Math.max(0, Math.round((endTime - now) / 1000));
@@ -189,12 +185,11 @@
     `;
     const worker = new Worker(URL.createObjectURL(new Blob([workerCode], { type: 'application/javascript' })));
 
-  /* Инициализация аудио-замка (фоновый режим) с защитой от засыпания */
+    /* Инициализация аудио-замка (фоновый режим) с защитой от засыпания */
     function startBackgroundAudio() {
         if (audioCtx) return;
         audioCtx = new (window.AudioContext || window.webkitAudioContext)();
         
-        // Автоматический "будильник": если система усыпляет аудио в фоне, принудительно будим его
         audioCtx.onstatechange = function() {
             if (audioCtx && audioCtx.state === 'suspended') {
                 audioCtx.resume();
@@ -205,10 +200,8 @@
         let osc = audioCtx.createOscillator();
         let gain = audioCtx.createGain();
         
-        // Модулируем частоту (каждые 100мс микроизменения), чтобы ОС считала поток живым треком
         osc.frequency.setValueAtTime(22, audioCtx.currentTime);
         
-        // Создаем бесконечный паттерн микро-колебаний частоты (от 20 до 24 Гц)
         let fMod = 0;
         setInterval(() => {
             if (audioCtx && osc) {
@@ -239,14 +232,13 @@
         }
     }
 
-/* Вспомогательный метод одиночного пика */
+    /* Вспомогательный метод одиночного пика */
     function createBeepNode(freq, duration, startTimeOffset) {
         if (!audioCtx) return;
         let osc = audioCtx.createOscillator();
         let gain = audioCtx.createGain();
         
-        // НАСТРОЙКА ГРОМКОСТИ И ХАРАКТЕРА ЗВУКА:
-        osc.type = 'square'; // 'square' делает звук резким и громким (как в ретро-играх), 'triangle' — чуть мягче, но громче синусоиды.
+        osc.type = 'square'; 
         osc.frequency.value = freq;
         
         gain.gain.setValueAtTime(2.0, audioCtx.currentTime + startTimeOffset);
@@ -262,21 +254,17 @@
         if (!audioCtx) return;
         
         if (type === 'start') {
-            // Триоль: три быстрых пика с повышением тональности
             createBeepNode(600, 0.1, 0.0);
             createBeepNode(750, 0.1, 0.12);
             createBeepNode(900, 0.15, 0.24);
         } 
         else if (type === 'countdown') {
-            // Короткий предупреждающий пик обратного отсчета
             createBeepNode(880, 0.08, 0.0);
         }
         else if (type === 'shot') {
-            // Финальный длинный сигнал начала съемки
             createBeepNode(1200, 0.6, 0.0);
         } 
         else if (type === 'walk') {
-            // Идти дальше: два спокойных низких сигнала
             createBeepNode(440, 0.2, 0.0);
             createBeepNode(440, 0.2, 0.35);
         }
@@ -297,7 +285,6 @@
             let displayTime = isMinutes && timeLeft >= 60 ? `${Math.floor(timeLeft / 60)}м ${timeLeft % 60}с` : `${timeLeft}с`;
             document.getElementById('timerDisplay').textContent = `До сигнала: ${displayTime}`;
             
-            // Запуск обратного отсчета за 5 секунд до начала съемки
             if (timeLeft <= 4 && timeLeft > 0) {
                 if (lastBeepTime !== timeLeft) {
                     lastBeepTime = timeLeft;
@@ -331,14 +318,13 @@
     /* Кнопка старта */
     btn.onclick = () => {
         if (state === 'idle') {
-            // При старте визуально приглушаем кнопки выбора режимов и отключаем клики
             document.getElementById('modesBlock').style.opacity = "0.4";
             document.getElementById('modesBlock').style.pointerEvents = "none";
             
             state = 'walk'; running = true;
             btn.style.background = "#2e7d32";
             document.getElementById('btnText').textContent = "СТОП";
-            startBackgroundAudio(); // Всегда запускаем аудио-замок
+            startBackgroundAudio(); 
             playSignal('start');
             cycle();
         } else if (state === 'shot') { nextPhase(); }
@@ -364,7 +350,7 @@
         let randomUnits = Math.floor(Math.random() * (maxVal - minVal + 1) + minVal);
         let endTime = Date.now() + randomUnits * (isMinutes ? 60 : 1) * 1000;
         document.getElementById('status').textContent = "Идёт прогулка";
-        lastBeepTime = 0; // Сбрасываем счетчик пиков для нового интервала
+        lastBeepTime = 0; 
         worker.postMessage({ action: 'start', endTime: endTime, phase: 'walk' });
     }
 

@@ -216,7 +216,7 @@ function setPreset(min, max, activeId) {
         osc.type = 'square'; // 'square' делает звук резким и громким (как в ретро-играх), 'triangle' — чуть мягче, но громче синусоиды.
         osc.frequency.value = freq;
         
-        gain.gain.setValueAtTime(2.0, audioCtx.currentTime + startTimeOffset);
+        gain.gain.setValueAtTime(1.0, audioCtx.currentTime + startTimeOffset);
         gain.gain.exponentialRampToValueAtTime(0.001, audioCtx.currentTime + startTimeOffset + duration);
         osc.connect(gain);
         gain.connect(audioCtx.destination);

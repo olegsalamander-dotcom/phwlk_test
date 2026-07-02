@@ -26,6 +26,18 @@
         button { width: 100%; padding: 18px; border: none; border-radius: 12px; font-weight: 600; font-size: 15px; cursor: pointer; position: relative; overflow: hidden; background: var(--accent); color: white; transition: opacity 0.2s; }
         button:active { opacity: 0.8; }
         .hold-progress { position: absolute; left: 0; top: 0; height: 100%; background: rgba(0,0,0,0.2); width: 0%; pointer-events: none; }
+
+        /* Контейнер для кнопок-пресетов */
+.modes-container {display: flex; gap: 8px; margin-bottom: 20px; transition: opacity 0.3s;}
+
+/* Базовый стиль кнопки режима */
+.mode-btn {flex: 1; padding: 12px 6px; background: var(--panel); border: 1px solid var(--border); border-radius: 10px; color: var(--text-dim); font-size: 12px; font-weight: 600; cursor: pointer; text-align: center; transition: all 0.2s; user-select: none;}
+
+/* Стиль активной (выбранной) кнопки */
+.mode-btn.active {background: var(--accent); color: #fff; border-color: var(--accent); }
+
+/* Подсказка со временем под названием режима */
+.mode-btn span {display: block; font-size: 9px; font-weight: 400; opacity: 0.7; margin-top: 2px; }
         
         /* Панель настроек */
         .panel { padding: 20px; border-radius: 16px; background: var(--panel); border: 1px solid var(--border); margin-top: 20px; }
@@ -61,6 +73,12 @@
         <span id="btnText">СТАРТ</span>
     </button>
 
+<div class="modes-container" id="modesBlock">
+    <div class="mode-btn active" id="modeWalk" onclick="setPreset(3, 7, 'modeWalk')">Пешая<span>3-7 мин</span></div>
+    <div class="mode-btn" id="modeBike" onclick="setPreset(6, 15, 'modeBike')">Вело<span>6-15 мин</span></div>
+    <div class="mode-btn" id="modeExtreme" onclick="setPreset(1, 4, 'modeExtreme')">Экстрим<span>1-4 мин</span></div>
+</div>
+    
     <div class="panel" hidden>
         <div style="display:flex; justify-content:space-between; font-size:12px; margin-bottom:15px; color: var(--text-dim);">
             <span id="unitToggle" style="cursor:pointer; border-bottom: 1px dotted var(--text-dim); user-select: none;">Интервал (мин)</span>
@@ -80,12 +98,28 @@
         <div>Автор проекта: Олег Романов</div>
         <div style="margin-top: 8px;">
          <a href="https://t.me/olegolezhek/">t.me/olegolezhek</a><br>
-         v 1.1 (02.07.2026) 
+         v 1.0 (02.07.2026) 
         </div>
     </div>
 </div>
 
 <script>
+    /* Функция переключения пресетов */
+function setPreset(min, max, activeId) {
+    // Запрещаем менять режим, если прогулка уже запущена
+    if (state !== 'idle') return; 
+    
+    // Передвигаем скрытые ползунки на новые значения
+    document.getElementById('minR').value = min;
+    document.getElementById('maxR').value = max;
+    
+    // Обновляем интерфейс (функция updateUI пересчитает полосу слайдера и текст)
+    updateUI();
+    
+    // Переключаем активную подсветку на кнопках
+    document.querySelectorAll('.mode-btn').forEach(b => b.classList.remove('active'));
+    document.getElementById(activeId).classList.add('active');
+}
     /* Данные фраз */
     const phrasesStart = ["Прогулка началась. Вдохновляйся моментом.", "Режим фотоохоты включен. Наблюдай за городом.", "Фотопрогулка активирована. Начинаем снимать.", "Город ждет твой лучший кадр. Погнали."];
     const phrasesShot = ["Внимание, снимай! У тебя минута.", "Лови момент! Время для кадра.", "Сделай этот кадр особенным. Пошел отсчет.", "Твой шанс! Делай максимально красивый снимок.", "Время пришло. В объективе — жизнь."];
@@ -261,6 +295,8 @@
     /* Кнопка старта */
     btn.onclick = () => {
         if (state === 'idle') {
+            document.getElementById('modesBlock').style.opacity = "0.4";
+            document.getElementById('modesBlock').style.pointerEvents = "none";
             state = 'walk'; running = true;
             btn.style.background = "#2e7d32";
             document.getElementById('btnText').textContent = "СТОП";

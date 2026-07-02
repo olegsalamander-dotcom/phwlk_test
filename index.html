@@ -46,8 +46,11 @@
         /* Закраска диапазона */
         .track-fill { position: absolute; top: 18px; height: 2px; background: var(--accent); pointer-events: none; }
         .ticks { display: flex; justify-content: space-between; font-size: 9px; color: var(--text-dim); padding: 0 4px; }
-        input[type=range] { position: absolute; width: 100%; pointer-events: none; -webkit-appearance: none; background: none; }
-        input[type=range]::-webkit-slider-thumb { pointer-events: all; width: 16px; height: 16px; border-radius: 50%; background: var(--text); cursor: pointer; }
+        
+        /* Изменены ширина и позиционирование для компенсации ушек круглого бегунка */
+        input[type=range] { position: absolute; width: calc(100% + 16px); left: -8px; pointer-events: none; -webkit-appearance: none; background: none; margin: 0; }
+        input[type=range]::-webkit-slider-thumb { pointer-events: all; width: 16px; height: 16px; border-radius: 50%; background: var(--text); cursor: pointer; -webkit-appearance: none; }
+        input[type=range]::-moz-range-thumb { pointer-events: all; width: 16px; height: 16px; border-radius: 50%; background: var(--text); cursor: pointer; border: none; }
         
         .footer { margin-top: 30px; text-align: center; font-size: 12px; color: var(--text-dim); }
         .footer a { color: var(--accent); text-decoration: none; margin: 0 8px; }
@@ -57,7 +60,7 @@
 <body>
 
 <div class="app">
-    <h1>Фотопрогулка (тест)</h1>
+    <h1>Фотопрогулка</h1>
     <div class="instruction">
         Надевай наушники, включай музыку, нажми "старт" и отправляйся на прогулку. В случайный момент ты услышишь обратный отчёт из 5 коротких гудков. У тебя будет ровно 1 минуту, чтобы сделать кадр.<br><br>
         - Не пытайся угадать когда будет сигнал и не кружись на одном месте в ожидании.<br>
@@ -79,7 +82,7 @@
         <span id="btnText">СТАРТ</span>
     </button>
    
-    <div class="panel">
+    <div class="panel" hidden>
         <div style="display:flex; justify-content:space-between; font-size:12px; margin-bottom:15px; color: var(--text-dim);">
             <span id="unitToggle" style="cursor:pointer; border-bottom: 1px dotted var(--text-dim); user-select: none;">Интервал (мин)</span>
             <span id="val" style="font-weight:bold; color: var(--text);">3 - 7</span>

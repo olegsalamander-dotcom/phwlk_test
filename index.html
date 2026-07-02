@@ -67,11 +67,6 @@
     </div>
     
     <div class="status" id="status">По готовности нажми СТАРТ</div>
-    
-    <button id="btn">
-        <div class="hold-progress" id="progress"></div>
-        <span id="btnText">СТАРТ</span>
-    </button>
 
 <div class="modes-container" id="modesBlock">
     <div class="mode-btn active" id="modeWalk" onclick="setPreset(3, 7, 'modeWalk')">Пешая<span>3-7 мин</span></div>
@@ -79,6 +74,11 @@
     <div class="mode-btn" id="modeExtreme" onclick="setPreset(1, 4, 'modeExtreme')">Экстрим<span>1-4 мин</span></div>
 </div>
     
+    <button id="btn">
+        <div class="hold-progress" id="progress"></div>
+        <span id="btnText">СТАРТ</span>
+    </button>
+   
     <div class="panel" hidden>
         <div style="display:flex; justify-content:space-between; font-size:12px; margin-bottom:15px; color: var(--text-dim);">
             <span id="unitToggle" style="cursor:pointer; border-bottom: 1px dotted var(--text-dim); user-select: none;">Интервал (мин)</span>

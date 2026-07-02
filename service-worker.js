@@ -1,12 +1,11 @@
-// Изменили версию на v1.6. Теперь телефон поймет, что файлы обновились!
-const CACHE_NAME = 'fotoprogulka-02.07.2026-v1.9.3'; 
+const CACHE_NAME = 'fotoprogulka-02.07.2026-v1.9.4'; // Увеличили версию!
 const ASSETS = [
   './',
   './index.html',
   './manifest.json'
 ];
 
-// 1. Кусок кода (остался без изменений) - установка и кэширование
+// 1. Установка и мгновенный пропуск ожидания
 self.addEventListener('install', (event) => {
     event.waitUntil(
         caches.open(CACHE_NAME).then((cache) => {
@@ -15,7 +14,7 @@ self.addEventListener('install', (event) => {
     );
 });
 
-// 2. Кусок кода (ЗАМЕНЕННЫЙ) - автоматическая очистка старого кэша
+// 2. Активация: чистим старый кэш и принудительно забираем управление вкладкой
 self.addEventListener('activate', (event) => {
     event.waitUntil(
         caches.keys().then((cacheNames) => {
@@ -23,15 +22,15 @@ self.addEventListener('activate', (event) => {
                 cacheNames.map((cache) => {
                     if (cache !== CACHE_NAME) {
                         console.log('Удаляем старый кэш:', cache);
-                        return caches.delete(cache); // Стираем версию v1.5 из памяти телефона
+                        return caches.delete(cache);
                     }
                 })
             );
-        }).then(() => self.clients.claim())
+        }).then(() => self.clients.claim()) // Принудительно обновляет страницу у пользователя
     );
 });
 
-// 3. Кусок кода (остался без изменений) - выдача файлов из кэша
+// 3. Выдача файлов из кэша
 self.addEventListener('fetch', (event) => {
     event.respondWith(
         caches.match(event.request).then((cachedResponse) => {

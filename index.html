@@ -98,7 +98,7 @@
         <div>Автор проекта: Олег Романов</div>
         <div style="margin-top: 8px;">
          <a href="https://t.me/olegolezhek/">t.me/olegolezhek</a><br>
-         v 1.0 (02.07.2026) 
+         v 1.1 (02.07.2026) 
         </div>
     </div>
 </div>
@@ -346,9 +346,22 @@ function setPreset(min, max, activeId) {
         cycle();
     }
 
-    if ('serviceWorker' in navigator) {
+   if ('serviceWorker' in navigator) {
         window.addEventListener('load', () => {
-            navigator.serviceWorker.register('./service-worker.js').catch(err => console.log('SW error', err));
+            navigator.serviceWorker.register('./service-worker.js')
+                .then((reg) => {
+                    // Если воркер обновился в фоне, перезагружаем страницу для применения изменений
+                    reg.onupdatefound = () => {
+                        const installingWorker = reg.installing;
+                        installingWorker.onstatechange = () => {
+                            if (installingWorker.state === 'installed' && navigator.serviceWorker.controller) {
+                                console.log('Доступно новое обновление! Перезагрузка...');
+                                location.reload();
+                            }
+                        };
+                    };
+                })
+                .catch(err => console.log('SW error', err));
         });
     }
 </script>

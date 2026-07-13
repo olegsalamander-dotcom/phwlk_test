@@ -1,4 +1,3 @@
-<script>
 /* Принудительный сброс кэша приложения */
     document.getElementById('clearCacheBtn').onclick = function() {
         if (confirm('Приложение сбросит кэш и перезагрузится для загрузки последней версии. Продолжить?')) {
@@ -252,4 +251,3 @@
             navigator.serviceWorker.register('./service-worker.js').catch(err => console.log('SW error', err));
         });
     }
-</script>

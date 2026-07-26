@@ -35,11 +35,13 @@
             display: flex; 
             justify-content: center; 
             align-items: center; 
-            min-height: 100vh; 
+            /* 100dvh динамически подстраивается под мобильные браузеры, предотвращая ложный скролл */
+            min-height: 100dvh; 
             -webkit-font-smoothing: antialiased;
         }
         
-        .app { width: 100%; max-width: 400px; padding: 24px; }
+        /* margin: auto 0 центрирует блок строго вертикально, только когда достаточно места */
+        .app { width: 100%; max-width: 400px; padding: 24px; margin: auto 0; box-sizing: border-box; }
         
         /* Аккуратный классический заголовок с благородными засечками */
         h1 { 
@@ -48,6 +50,7 @@
             font-weight: 700;
             text-transform: uppercase; 
             letter-spacing: 3px; 
+            margin-top: 0;
             margin-bottom: 24px; 
             text-align: center; 
             color: var(--text); 
@@ -255,7 +258,7 @@
 
     <div class="footer">
         <div>Автор проекта: Олег Романов</div>
-        <div style="margin-top: 8px;">v1.9</div>
+        <div style="margin-top: 8px;">v1.1</div>
     </div>
 </div>
 

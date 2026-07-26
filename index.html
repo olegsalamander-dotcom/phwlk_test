@@ -12,210 +12,140 @@
     
     <title>ГУЛЯЙ - СНИМАЙ</title>
     <style>
-        /* БАЗОВАЯ ТЕМА: 1 ЛЕЙКА (ФОТО-МИНИМАЛИЗМ) */
-        body[data-theme="leica"], body:not([data-theme]) { 
-            --bg: #121214; --panel: #1a1a1c; --accent: #d32f2f; 
-            --text: #ffffff; --text-dim: #8e8e93; --border: #2c2c2e;
-            --radius: 8px; --btn-radius: 40px;
-            --font: "SF Mono", Monaco, Courier, monospace;
-            --shadow: none; --border-width: 1px;
+        :root { 
+            --bg: #111112; 
+            --panel: #19191b; 
+            --accent: #d32f2f; 
+            --text: #ffffff; 
+            --text-dim: #76767c; 
+            --border: #262629;
+            --font: "SF Mono", Monaco, Consolas, "Courier New", monospace;
         }
-
-        /* ТЕМА 2: СКАНДИНАВСКИЙ (СВЕТЛАЯ ГАЛЕРЕЯ) */
-        body[data-theme="scandi"] { 
-            --bg: #f3f4f6; --panel: #ffffff; --accent: #4f46e5; 
-            --text: #1f2937; --text-dim: #6b7280; --border: #e5e7eb;
-            --radius: 16px; --btn-radius: 16px;
-            --font: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
-            --shadow: 4px 4px 10px rgba(0,0,0,0.05), -4px -4px 10px rgba(255,255,255,0.8);
-            --border-width: 1px;
-        }
-
-        /* ТЕМА 3: ПЛАКАТНЫЙ КОНСТРУКТИВИЗМ (БРУТАЛИЗМ) */
-        body[data-theme="poster"] { 
-            --bg: #facc15; --panel: #ffffff; --accent: #000000; 
-            --text: #000000; --text-dim: #000000; --border: #000000;
-            --radius: 0px; --btn-radius: 0px;
-            --font: "Impact", "Arial Black", sans-serif;
-            --shadow: 4px 4px 0px #000000;
-            --border-width: 3px;
-        }
-
+        
         body { 
             margin: 0; 
             font-family: var(--font); 
             background: var(--bg); 
+            /* Эффект плёночного зерна / шума */
+            background-image: radial-gradient(rgba(255,255,255,0.015) 1px, transparent 0), radial-gradient(rgba(255,255,255,0.01) 1px, transparent 0);
+            background-size: 4px 4px;
+            background-position: 0 0, 2px 2px;
             color: var(--text); 
             display: flex; 
             justify-content: center; 
             align-items: center; 
-            min-height: 100vh;
-            transition: background 0.3s, color 0.3s;
-        }
-
-        .app { width: 100%; max-width: 400px; padding: 24px; }
-
-        /* Панель переключения тем */
-        .theme-selector {
-            display: flex;
-            justify-content: center;
-            gap: 12px;
-            margin-bottom: 24px;
-        }
-        .theme-th-btn {
-            background: none;
-            border: none;
-            padding: 6px 10px;
-            font-size: 11px;
-            text-transform: uppercase;
-            letter-spacing: 1px;
-            color: var(--text-dim);
-            cursor: pointer;
-            border-bottom: 2px solid transparent;
-            font-family: var(--font);
-            width: auto;
-            border-radius: 0;
-            box-shadow: none;
-        }
-        .theme-th-btn.active {
-            color: var(--text);
-            border-bottom-color: var(--accent);
-            font-weight: bold;
-        }
-
-        h1 { 
-            font-size: 24px; 
-            text-transform: uppercase; 
-            letter-spacing: 2px; 
-            margin-bottom: 20px; 
-            text-align: center; 
-            color: var(--text);
-            font-weight: 900;
+            min-height: 100vh; 
+            letter-spacing: -0.2px;
         }
         
-        body[data-theme="poster"] h1 {
-            font-size: 32px;
-            letter-spacing: -1px;
+        .app { width: 100%; max-width: 400px; padding: 24px; }
+        
+        h1 { 
+            font-size: 22px; 
+            text-transform: uppercase; 
+            letter-spacing: 2px; 
+            margin-bottom: 24px; 
+            text-align: center; 
+            color: var(--text); 
+            font-weight: 700;
         }
-
+        
         .instruction { font-size: 13px; color: var(--text-dim); text-align: left; margin-bottom: 30px; line-height: 1.6; }
-        .instruction2 { font-size: 10px; color: var(--text-dim); text-align: center; margin-bottom: 30px; line-height: 1.6; }
+        .instruction2 { font-size: 10px; color: var(--text-dim); text-align: center; margin-bottom: 30px; line-height: 1.6; text-transform: uppercase; letter-spacing: 0.5px; }
         
         .status { 
             padding: 16px; 
-            border: var(--border-width) solid var(--border); 
-            border-radius: var(--radius); 
+            border: 1px solid var(--border); 
+            border-radius: 6px; 
             background: var(--panel);
-            box-shadow: var(--shadow);
             text-align: center; 
             margin-bottom: 20px; 
-            font-size: 14px; 
-            font-weight: bold; 
+            font-size: 13px; 
+            font-weight: 600; 
             text-transform: uppercase;
+            letter-spacing: 0.5px;
         }
         
-        /* Главная Кнопка */
-        #btn { 
+        /* Кнопки */
+        button { 
             width: 100%; 
-            padding: 20px; 
-            border: var(--border-width) solid var(--border); 
-            border-radius: var(--btn-radius); 
-            font-weight: 900; 
-            font-size: 16px; 
+            padding: 18px; 
+            border: 1px solid var(--border); 
+            border-radius: 6px; 
+            font-family: var(--font);
+            font-weight: 600; 
+            font-size: 14px; 
+            text-transform: uppercase;
+            letter-spacing: 1px;
             cursor: pointer; 
             position: relative; 
             overflow: hidden; 
             background: var(--accent); 
             color: white; 
-            box-shadow: var(--shadow);
-            transition: opacity 0.2s, background 0.3s, border-radius 0.3s; 
-            font-family: var(--font);
-            text-transform: uppercase;
-            letter-spacing: 1px;
+            transition: opacity 0.2s, background-color 0.2s; 
         }
-        body[data-theme="scandi"] #btn { color: #fff; }
-        body[data-theme="poster"] #btn { color: #fff; background: #000; }
-        #btn:active { opacity: 0.8; }
-        .hold-progress { position: absolute; left: 0; top: 0; height: 100%; background: rgba(255,255,255,0.3); width: 0%; pointer-events: none; }
-        body[data-theme="poster"] .hold-progress { background: rgba(250,204,21,0.5); }
+        button:active { opacity: 0.9; }
+        .hold-progress { position: absolute; left: 0; top: 0; height: 100%; background: rgba(255, 255, 255, 0.25); width: 0%; pointer-events: none; }
         
         /* Стили для кнопок-пресетов режимов */
         .modes-container { display: flex; gap: 8px; margin-bottom: 20px; transition: opacity 0.3s; }
         .mode-btn { 
             flex: 1; 
-            padding: 12px 6px; 
+            padding: 12px 4px; 
             background: var(--panel); 
-            border: var(--border-width) solid var(--border); 
-            border-radius: var(--radius); 
+            border: 1px solid var(--border); 
+            border-radius: 6px; 
             color: var(--text-dim); 
-            font-size: 11px; 
+            font-size: 10px; 
             font-weight: 600; 
             cursor: pointer; 
             text-align: center; 
             transition: all 0.2s; 
-            user-select: none;
-            font-family: var(--font);
-            box-shadow: var(--shadow);
+            user-select: none; 
+            text-transform: uppercase;
         }
-        .mode-btn.active { background: var(--accent); color: white; border-color: var(--border); }
-        body[data-theme="poster"] .mode-btn.active { color: #fff; background: #000; box-shadow: none; }
-        .mode-btn span { display: block; font-size: 9px; font-weight: 400; opacity: 0.8; margin-top: 2px; }
+        .mode-btn.active { background: var(--accent); color: #fff; border-color: var(--accent); }
+        .mode-btn span { display: block; font-size: 8px; font-weight: 400; opacity: 0.7; margin-top: 4px; text-transform: none; }
 
         /* Панель настроек */
-        .panel { 
-            padding: 20px; 
-            border-radius: var(--radius); 
-            background: var(--panel); 
-            border: var(--border-width) solid var(--border); 
-            margin-top: 20px; 
-            box-shadow: var(--shadow);
-        }
+        .panel { padding: 20px; border-radius: 6px; background: var(--panel); border: 1px solid var(--border); margin-top: 20px; }
         .slider-wrap { position: relative; height: 40px; margin-top: 10px; }
         .track { position: absolute; top: 18px; width: 100%; height: 2px; background: var(--border); }
+        /* Закраска диапазона */
         .track-fill { position: absolute; top: 18px; height: 2px; background: var(--accent); pointer-events: none; }
         .ticks { display: flex; justify-content: space-between; font-size: 9px; color: var(--text-dim); padding: 0 4px; }
         
         input[type=range] { position: absolute; width: calc(100% + 16px); left: -8px; pointer-events: none; -webkit-appearance: none; background: none; margin: 0; }
-        input[type=range]::-webkit-slider-thumb { pointer-events: all; width: 16px; height: 16px; border-radius: 50%; background: var(--text); cursor: pointer; -webkit-appearance: none; border: var(--border-width) solid var(--border); }
-        input[type=range]::-moz-range-thumb { pointer-events: all; width: 16px; height: 16px; border-radius: 50%; background: var(--text); cursor: pointer; border: var(--border-width) solid var(--border); }
-        body[data-theme="poster"] input[type=range]::-webkit-slider-thumb { border-radius: 0; background: #000; }
+        input[type=range]::-webkit-slider-thumb { pointer-events: all; width: 16px; height: 16px; border-radius: 50%; background: var(--text); cursor: pointer; -webkit-appearance: none; border: 1px solid var(--border); }
+        input[type=range]::-moz-range-thumb { pointer-events: all; width: 16px; height: 16px; border-radius: 50%; background: var(--text); cursor: pointer; border: 1px solid var(--border); }
         
-        .footer { margin-top: 30px; text-align: center; font-size: 12px; color: var(--text-dim); }
+        .footer { margin-top: 35px; text-align: center; font-size: 11px; color: var(--text-dim); text-transform: uppercase; letter-spacing: 0.5px; }
         .footer a { color: var(--accent); text-decoration: none; margin: 0 8px; }
-        .links { margin-top: 6px; text-align: left; font-size: 12px; color: var(--text-dim); line-height: 1.6; }
-        .links a { color: var(--accent); text-decoration: none; font-weight: bold; }
+        .links { margin-top: 8px; text-align: left; font-size: 12px; color: var(--text-dim); line-height: 1.6; }
+        .links a { color: var(--accent); text-decoration: none; }
         
+        /* Выделение хэштегов */
         a[href^="#"]:not([href="#"]) { color: var(--accent); text-decoration: none; font-weight: 600; }
 
-        /* Стили для раскрывающейся инструкции */
-        .instruction-details { 
-            border: var(--border-width) solid var(--border); 
-            border-radius: var(--radius); 
-            background: var(--panel); 
-            margin-top: -15px; 
-            margin-bottom: 25px; 
-            padding: 14px; 
-            box-shadow: var(--shadow);
-        }
-        .instruction-summary { font-size: 13px; font-weight: 600; color: var(--text); cursor: pointer; list-style: none; display: flex; justify-content: space-between; align-items: center; user-select: none; }
-        .instruction-summary::after { content: '▾'; color: var(--text-dim); transition: transform 0.2s; font-size: 16px; }
+        /* Стили для раскрывающейся инструкции-руководства */
+        .instruction-details { border: 1px solid var(--border); border-radius: 6px; background: var(--panel); margin-top: -15px; margin-bottom: 25px; padding: 14px; transition: all 0.3s; }
+        .instruction-summary { font-size: 12px; font-weight: 600; color: var(--text); cursor: pointer; list-style: none; display: flex; justify-content: space-between; align-items: center; user-select: none; text-transform: uppercase; letter-spacing: 0.5px; }
+        .instruction-summary::after { content: '▾'; color: var(--text-dim); transition: transform 0.2s; font-size: 14px; }
         .instruction-details[open] .instruction-summary::after { transform: rotate(180deg); }
-        .instruction-full-text { font-size: 13px; color: var(--text-dim); line-height: 1.6; margin-top: 12px; border-top: var(--border-width) solid var(--border); padding-top: 12px; }
+        .instruction-full-text { font-size: 13px; color: var(--text-dim); line-height: 1.6; margin-top: 12px; border-top: 1px solid var(--border); padding-top: 12px; font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif; }
         .instruction-full-text ul { margin: 8px 0; padding-left: 20px; }
         .instruction-full-text li { margin-bottom: 8px; }
         
-        #clearCacheBtn {
+        /* Кнопка сброса кэша приведена к общему стилю */
+        #clearCacheBtn { 
             margin-top: 15px; 
-            padding: 10px; 
+            padding: 14px; 
             font-size: 12px; 
             background: var(--panel); 
-            color: var(--text-dim); 
-            border: var(--border-width) solid var(--border);
-            border-radius: var(--radius);
-            box-shadow: var(--shadow);
-            font-family: var(--font);
-            text-transform: uppercase;
+            color: var(--text); 
+            border: 1px solid var(--border); 
         }
+        #clearCacheBtn:active { background: var(--border); }
         
         touch-action: manipulation;
         [hidden] { display: none !important; }
@@ -224,13 +154,6 @@
 <body>
 
 <div class="app">
-    <!-- Переключатель тем дизайна -->
-    <div class="theme-selector">
-        <button class="theme-th-btn active" onclick="switchTheme('leica', this)">Leica</button>
-        <button class="theme-th-btn" onclick="switchTheme('scandi', this)">Scandi</button>
-        <button class="theme-th-btn" onclick="switchTheme('poster', this)">Постер</button>
-    </div>
-
     <h1>ГУЛЯЙ - СНИМАЙ</h1>
     <div class="instruction">
         Гуляй по городу и делай кадр каждый раз, когда услышишь сигнал. У тебя будет ровно 1 минута.<br><br>
@@ -298,35 +221,14 @@
     </details>
 
     <button id="clearCacheBtn">
-                Проверить обновления
+        Проверить обновления
     </button>
 
     <div class="footer">
         <div>Автор проекта: Олег Романов</div>
-        <div style="margin-top: 8px;">v1.2</div>
+        <div style="margin-top: 8px;">v1.1</div>
     </div>
 </div>
-
-<script>
-    /* Логика инициализации и переключения темы оформления */
-    function switchTheme(themeName, element) {
-        document.body.setAttribute('data-theme', themeName);
-        localStorage.setItem('selected-theme', themeName);
-        
-        // Переключаем класс active на кнопках выбора
-        document.querySelectorAll('.theme-th-btn').forEach(btn => btn.classList.remove('active'));
-        if (element) {
-            element.classList.add('active');
-        } else {
-            const activeBtn = Array.from(document.querySelectorAll('.theme-th-btn')).find(btn => btn.textContent.toLowerCase().includes(themeName === 'poster' ? 'постер' : themeName));
-            if (activeBtn) activeBtn.classList.add('active');
-        }
-    }
-
-    // Восстанавливаем тему при загрузке страницы
-    const savedTheme = localStorage.getItem('selected-theme') || 'leica';
-    switchTheme(savedTheme);
-</script>
 
 <script src="app.js"></script>
     

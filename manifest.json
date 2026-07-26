@@ -3,8 +3,8 @@
   "short_name": "Фотопрогулка",
   "start_url": "./index.html",
   "display": "standalone",
-  "background_color": "#0f0f12",
-  "theme_color": "#0f0f12",
+  "background_color": "#1c1c1f",
+  "theme_color": "#1c1c1f",
   "orientation": "portrait",
   "icons": [
     {

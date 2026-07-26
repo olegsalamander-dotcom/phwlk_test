@@ -1,6 +1,6 @@
 {
-  "name": "Фотопрогулка",
-  "short_name": "Фотопрогулка",
+  "name": "ГУЛЯЙ - СНИМАЙ",
+  "short_name": "ГУЛЯЙ - СНИМАЙ",
   "start_url": "./index.html",
   "display": "standalone",
   "background_color": "#1c1c1f",

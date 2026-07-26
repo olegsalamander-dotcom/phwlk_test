@@ -1,12 +1,12 @@
-const CACHE_NAME = 'fotoprogulka-26.07.2026-v15'; 
+const CACHE_NAME = 'fotoprogulka-26.07.2026-v20'; 
 const ASSETS = [
   './',
   './index.html',
+  './style.css',
   './app.js',
   './manifest.json'
 ];
 
-// 1. Кусок кода (остался без изменений) - установка и кэширование
 self.addEventListener('install', (event) => {
     event.waitUntil(
         caches.open(CACHE_NAME).then((cache) => {
@@ -15,7 +15,6 @@ self.addEventListener('install', (event) => {
     );
 });
 
-// 2. Кусок кода (ЗАМЕНЕННЫЙ) - автоматическая очистка старого кэша
 self.addEventListener('activate', (event) => {
     event.waitUntil(
         caches.keys().then((cacheNames) => {
@@ -23,7 +22,7 @@ self.addEventListener('activate', (event) => {
                 cacheNames.map((cache) => {
                     if (cache !== CACHE_NAME) {
                         console.log('Удаляем старый кэш:', cache);
-                        return caches.delete(cache); // Стираем версию v1.5 из памяти телефона
+                        return caches.delete(cache);
                     }
                 })
             );
@@ -31,7 +30,6 @@ self.addEventListener('activate', (event) => {
     );
 });
 
-// 3. Кусок кода (остался без изменений) - выдача файлов из кэша
 self.addEventListener('fetch', (event) => {
     event.respondWith(
         caches.match(event.request).then((cachedResponse) => {

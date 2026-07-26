@@ -16,6 +16,7 @@
             --bg: #141416; 
             --panel: #1b1b1e; 
             --btn-base: #1e1e22;
+            --btn-active: #ffffff; /* Белая сплошная заливка для активного состояния */
             --accent: #ffffff; 
             --text: #ffffff; 
             --text-dim: #76767c; 
@@ -39,8 +40,10 @@
         
         .app { width: 100%; max-width: 400px; padding: 24px; }
         
+        /* Шрифт с засечками из ранней Leica-версии */
         h1 { 
-            font-size: 22px; 
+            font-family: "Georgia", "Times New Roman", serif;
+            font-size: 24px; 
             text-transform: uppercase; 
             letter-spacing: 2px; 
             margin-bottom: 24px; 
@@ -81,10 +84,10 @@
             overflow: hidden; 
             background: var(--btn-base); 
             color: var(--text); 
-            transition: opacity 0.2s, background-color 0.2s; 
+            transition: opacity 0.2s, background-color 0.2s, color 0.2s; 
         }
         button:active { opacity: 0.8; }
-        .hold-progress { position: absolute; left: 0; top: 0; height: 100%; background: rgba(255, 255, 255, 0.15); width: 0%; pointer-events: none; }
+        .hold-progress { position: absolute; left: 0; top: 0; height: 100%; background: rgba(0, 0, 0, 0.2); width: 0%; pointer-events: none; }
         
         /* Стили для кнопок-пресетов режимов */
         .modes-container { display: flex; gap: 8px; margin-bottom: 20px; transition: opacity 0.3s; }
@@ -104,13 +107,14 @@
             text-transform: uppercase;
         }
         
-        /* Изначально одного цвета с кнопкой старта */
+        /* Активное состояние кнопок переведено на контрастную сплошную заливку */
         .mode-btn.active { 
-            background: var(--btn-base); 
-            color: var(--text); 
-            border-color: var(--text); 
+            background: var(--btn-active); 
+            color: #141416; 
+            border-color: var(--btn-active); 
         }
         .mode-btn span { display: block; font-size: 8px; font-weight: 400; opacity: 0.6; margin-top: 4px; text-transform: none; }
+        .mode-btn.active span { opacity: 0.8; }
 
         /* Панель настроек */
         .panel { padding: 20px; border-radius: 6px; background: var(--panel); border: 1px solid var(--border); margin-top: 20px; }
@@ -139,11 +143,11 @@
         .instruction-full-text ul { margin: 8px 0; padding-left: 20px; }
         .instruction-full-text li { margin-bottom: 8px; }
         
-        /* Главная интерактивная кнопка */
+        /* Главная интерактивная кнопка СТАРТ переведена на контрастную сплошную заливку */
         #btn { 
-            background: var(--btn-base); 
-            color: var(--text); 
-            border: 1px solid var(--text); 
+            background: var(--btn-active); 
+            color: #141416; 
+            border: 1px solid var(--btn-active); 
         }
         
         /* Проверить обновления */
@@ -236,7 +240,7 @@
 
     <div class="footer">
         <div>Автор проекта: Олег Романов</div>
-        <div style="margin-top: 8px;">v1.3</div>
+        <div style="margin-top: 8px;">v1.4</div>
     </div>
 </div>
 

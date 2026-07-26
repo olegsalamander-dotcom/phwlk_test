@@ -32,6 +32,45 @@ const phrasesStart = ["Прогулка началась. Вдохновляйс
 const phrasesShot = ["Внимание, снимай! У тебя минута.", "Лови момент! Время для кадра.", "Сделай этот кадр особенным. Пошел отсчет.", "Твой шанс! Делай максимально красивый снимок.", "Время пришло. В объективе — жизнь."];
 const phrasesWalk = ["Время вышло. Идем дальше.", "Кадр готов. Продолжаем прогулку.", "Снимок сделан? Отлично, ищем новый сюжет.", "Минута позади. Двигаемся к следующей точке.", "Заметь детали, которых никто не видит. Продолжаем прогулку.", "Меняй ракурс, ищи свет. Идем дальше.", "Не спеши, доверься интуиции. Продолжаем путь.", "Город — это твой холст. Идем дальше."];
 
+/* Универсальный список творческих тем */
+const themes = [
+    "Симметрия в кадре",
+    "Ведущие диагонали",
+    "Ритм и повторения",
+    "Естественный фрейминг (рамка)",
+    "Контраст масштабов",
+    "Городские отражения",
+    "Минимализм (много воздуха)",
+    "Фокус на текстуру",
+    "Взгляд строго вверх",
+    "Взгляд строго вниз",
+    "Визуальная рифма форм",
+    "Многослойность (3 плана)"
+];
+
+/* Функция анимации и выбора случайной темы */
+function spinTheme() {
+    if (state !== 'idle') return;
+    const display = document.getElementById('themeDisplay');
+    const btnTheme = document.getElementById('themeBtn');
+    
+    display.classList.add('spinning');
+    btnTheme.style.pointerEvents = 'none';
+    btnTheme.style.opacity = '0.4';
+    
+    let iterations = 0;
+    const interval = setInterval(() => {
+        display.textContent = themes[Math.floor(Math.random() * themes.length)];
+        iterations++;
+        if (iterations > 8) {
+            clearInterval(interval);
+            display.classList.remove('spinning');
+            btnTheme.style.pointerEvents = 'auto';
+            btnTheme.style.opacity = '1';
+        }
+    }, 60);
+}
+
 /* Переменные состояния */
 let audioCtx = null, backgroundNode = null, dummyAudio = null, state = 'idle', running = false;
 let isMinutes = true; 
@@ -96,7 +135,7 @@ function startBackgroundAudio() {
     dummyAudio.play().catch(() => {});
     
     if ('mediaSession' in navigator) {
-        navigator.mediaSession.metadata = new MediaMetadata({ title: 'Фотопрогулка (активна)', artist: 'Олег Романов' });
+        navigator.mediaSession.metadata = new MediaMetadata({ title: 'ГУЛЯЙ - СНИМАЙ (активно)', artist: 'Олег Романов' });
         navigator.mediaSession.playbackState = "playing";
         navigator.mediaSession.setActionHandler('play', () => { if(dummyAudio) dummyAudio.play(); if(audioCtx) audioCtx.resume(); });
         navigator.mediaSession.setActionHandler('pause', () => { if(dummyAudio) dummyAudio.play(); });
@@ -188,6 +227,8 @@ btn.onclick = () => {
     if (state === 'idle') {
         document.getElementById('modesBlock').style.opacity = "0.4";
         document.getElementById('modesBlock').style.pointerEvents = "none";
+        document.getElementById('themeBtn').style.opacity = "0.4";
+        document.getElementById('themeBtn').style.pointerEvents = "none";
         
         state = 'walk'; running = true;
         btn.className = "state-walk"; // Меняем класс на ходьбу

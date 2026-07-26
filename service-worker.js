@@ -1,4 +1,4 @@
-const CACHE_NAME = 'fotoprogulka-26.07.2026-v14'; 
+const CACHE_NAME = 'fotoprogulka-26.07.2026-v15'; 
 const ASSETS = [
   './',
   './index.html',
